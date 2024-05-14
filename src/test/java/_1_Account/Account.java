@@ -19,7 +19,7 @@ public class Account {
     String password = "1234";
 
 
-    @Test
+    @BeforeClass
     public void TC_1_ValidLogin() {
         baseURI = "https://www.themoviedb.org";
 
