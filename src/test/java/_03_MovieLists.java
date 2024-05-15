@@ -19,7 +19,6 @@ public class _03_MovieLists {
                 .addHeader("Authorization", accessToken)
                 .setContentType(ContentType.JSON)
                 .build();
-
     }
 
     @Test
@@ -85,11 +84,4 @@ public class _03_MovieLists {
                 .log().body()
                 .statusCode(200);
     }
-
-
-
-
-
-
-
 }
