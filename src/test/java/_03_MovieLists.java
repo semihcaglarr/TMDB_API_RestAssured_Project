@@ -25,7 +25,7 @@ public class _03_MovieLists {
     @Test
     public void TC_10_GetNowPlayingMovies() {
         System.out.println();
-        System.out.println("------------TC_9_Get Now Playing Movies------------");
+        System.out.println("------------TC_10_Get Now Playing Movies------------");
 
         given()
                 .spec(reqSpec)
@@ -37,4 +37,23 @@ public class _03_MovieLists {
                 .log().body()
                 .statusCode(200);
     }
+
+    @Test(dependsOnMethods = "TC_10_GetNowPlayingMovies")
+    public void TC_11_GetPopularMovies() {
+        System.out.println();
+        System.out.println("------------TC_11_Get Popular Movies------------");
+
+        given()
+                .spec(reqSpec)
+
+                .when()
+                .get("/popular")
+
+                .then()
+                .log().body()
+                .statusCode(200);
+    }
+
+
+
 }
