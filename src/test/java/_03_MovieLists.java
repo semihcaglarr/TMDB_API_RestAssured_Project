@@ -5,7 +5,7 @@ import org.testng.annotations.*;
 
 import static io.restassured.RestAssured.*;
 
-public class _02_Genres {
+public class _03_MovieLists {
 
     String apiKey = "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI3ODYxODNmYmE3MDMxMjM5NzM2Mzc5M2UyZTIzMDBiYyIsInN1YiI6IjY2MzUxZGVhOTU5MGUzMDEyY2JiOGQ5ZCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.Anhzli1hmyToxEJmSVeTkzPM0fiPDui3xDha5S85AQM";
     String accessToken = "Bearer " + apiKey;
@@ -13,7 +13,7 @@ public class _02_Genres {
 
     @BeforeClass
     public void TC_1_ValidLogin() {
-        baseURI = "https://api.themoviedb.org/3/genre"; // API_URL
+        baseURI = "https://api.themoviedb.org/3/movie"; // API_URL
 
         reqSpec = new RequestSpecBuilder()
                 .addHeader("Authorization", accessToken)
@@ -23,36 +23,18 @@ public class _02_Genres {
     }
 
     @Test
-    public void TC_9_GetMovieGenres() {
+    public void TC_10_GetNowPlayingMovies() {
         System.out.println();
-        System.out.println("------------TC_9_Get Movie Genres------------");
+        System.out.println("------------TC_9_Get Now Playing Movies------------");
 
         given()
                 .spec(reqSpec)
 
                 .when()
-                .get("/movie/list")
+                .get("/now_playing")
 
                 .then()
-                .statusCode(200)
-                .log().body();
+                .log().body()
+                .statusCode(200);
     }
-
-    @Test(dependsOnMethods = "TC_9_GetMovieGenres")
-    public void TC_9_1_GetTvShowGenres() {
-        System.out.println();
-        System.out.println("------------TC_9_1_Get Tv Show Genres------------");
-
-        given()
-                .spec(reqSpec)
-
-                .when()
-                .get("/tv/list")
-
-                .then()
-                .statusCode(200)
-                .log().body();
-    }
-
-
 }
