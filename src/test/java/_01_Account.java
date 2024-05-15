@@ -50,8 +50,11 @@ public class _01_Account {
 //    public void TC_2_InvalidValidLogin() {
 //    }
 
+
     @Test
     public void TC_3_GetAccountDetails() {
+        System.out.println();
+        System.out.println("------------TC_3_GetAccountDetails------------");
 
         Response returnData =
                 given()
@@ -67,12 +70,12 @@ public class _01_Account {
 
         int accountId = returnData.getBody().jsonPath().getInt("id");
         System.out.println("accountId = " + accountId);
-
-
     }
 
     @Test(dependsOnMethods = "TC_3_GetAccountDetails")
     public void TC_4_AddMovietoFavorites() {
+        System.out.println();
+        System.out.println("------------TC_4_AddMovietoFavorites------------");
 
         Map<String, Object> addMovietoFavoritesMap = new HashMap<>();
         addMovietoFavoritesMap.put("media_type", "movie");
@@ -95,6 +98,8 @@ public class _01_Account {
 
     @Test(dependsOnMethods = "TC_4_AddMovietoFavorites")
     public void TC_5_AddMovietoWatchList() {
+        System.out.println();
+        System.out.println("------------TC_5_AddMovietoWatchList------------");
 
         Map<String, Object> addMovietoWatchListMap = new HashMap<>();
         addMovietoWatchListMap.put("media_type", "movie");
@@ -115,6 +120,24 @@ public class _01_Account {
                 .statusCode(201)
                 .log().body();
     }
+
+    @Test(dependsOnMethods = "TC_5_AddMovietoWatchList")
+    public void TC_6_GetFavoriteMovies() {
+        System.out.println();
+        System.out.println("------------TC_6_GetFavoriteMovies------------");
+
+        given()
+                .spec(reqSpec)
+
+                .when()
+                .get("/account/" + accountId + "/favorite/movies")
+
+                .then()
+                .log().body()
+                .statusCode(200);
+    }
+
+
 
 
 }
