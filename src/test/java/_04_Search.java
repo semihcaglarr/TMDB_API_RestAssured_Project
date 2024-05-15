@@ -28,6 +28,7 @@ public class _04_Search {
                 .build();
     }
 
+
     @Test
     public void TC_14_1_SearchforMovie() {
         System.out.println();
@@ -51,6 +52,7 @@ public class _04_Search {
         System.out.println("zombieProjectId = " + zombieProjectId);
     }
 
+
     @Test(dependsOnMethods = "TC_14_1_SearchforMovie")
     public void TC_14_2_GetMovieDetails() {
         System.out.println();
@@ -67,6 +69,7 @@ public class _04_Search {
                 .log().body()
                 .statusCode(200);
     }
+
 
     @Test
     public void TC_15_1_SearchforTvShows() {
@@ -91,6 +94,7 @@ public class _04_Search {
 
     }
 
+
     @Test(dependsOnMethods = "TC_15_1_SearchforTvShows")
     public void TC_15_2_GetTvShowsDetails() {
         System.out.println();
@@ -107,6 +111,7 @@ public class _04_Search {
                 .log().body()
                 .statusCode(200);
     }
+
 
     @Test
     public void TC_16_1_SearchforPersons() {
@@ -130,6 +135,7 @@ public class _04_Search {
         System.out.println("mariaBadmajewId = " + mariaBadmajewId);
 
     }
+
 
     @Test(dependsOnMethods = "TC_16_1_SearchforPersons")
     public void TC_16_2_GetTvShowsDetails() {
@@ -167,6 +173,7 @@ public class _04_Search {
                 .statusCode(200);
     }
 
+
     @Test(dependsOnMethods = "TC_14_1_SearchforMovie")
     public void TC_17_1_AddMovieRating() {
         System.out.println();
@@ -187,4 +194,28 @@ public class _04_Search {
                 .log().body()
                 .statusCode(201);
     }
+
+
+    @Test(dependsOnMethods = "TC_15_1_SearchforTvShows")
+    public void TC_17_2_AddTvShowRating() {
+        System.out.println();
+        System.out.println("------------TC_17_1_Add Tv Show Rating------------");
+
+        Map<String, Double> movieRating = new HashMap<>();
+        movieRating.put("value", 9.5);
+
+        given()
+                .spec(reqSpec)
+                .body(movieRating)
+                .contentType(ContentType.JSON)
+
+                .when()
+                .post("/tv/" + breakingBadId + "/rating")
+
+                .then()
+                .log().body()
+                .statusCode(201);
+    }
+
+
 }
