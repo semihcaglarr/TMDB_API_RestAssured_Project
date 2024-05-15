@@ -12,7 +12,7 @@ public class _03_MovieLists {
     RequestSpecification reqSpec;
 
     @BeforeClass
-    public void TC_1_ValidLogin() {
+    public void Setup() {
         baseURI = "https://api.themoviedb.org/3/movie"; // API_URL
 
         reqSpec = new RequestSpecBuilder()
@@ -34,7 +34,7 @@ public class _03_MovieLists {
                 .get("/now_playing")
 
                 .then()
-                .log().body()
+                //.log().body()
                 .statusCode(200);
     }
 
@@ -50,7 +50,7 @@ public class _03_MovieLists {
                 .get("/popular")
 
                 .then()
-                .log().body()
+                //.log().body()
                 .statusCode(200);
     }
 
@@ -66,9 +66,27 @@ public class _03_MovieLists {
                 .get("/top_rated")
 
                 .then()
+                //.log().body()
+                .statusCode(200);
+    }
+
+    @Test(dependsOnMethods = "TC_12_GetTopRatedMovies")
+    public void TC_13_UpComingMovies() {
+        System.out.println();
+        System.out.println("------------TC_13_Up Coming Movies------------");
+
+        given()
+                .spec(reqSpec)
+
+                .when()
+                .get("/upcoming")
+
+                .then()
                 .log().body()
                 .statusCode(200);
     }
+
+
 
 
 

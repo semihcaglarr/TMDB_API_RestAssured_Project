@@ -12,7 +12,7 @@ public class _02_Genres {
     RequestSpecification reqSpec;
 
     @BeforeClass
-    public void TC_1_ValidLogin() {
+    public void Setup() {
         baseURI = "https://api.themoviedb.org/3/genre"; // API_URL
 
         reqSpec = new RequestSpecBuilder()
