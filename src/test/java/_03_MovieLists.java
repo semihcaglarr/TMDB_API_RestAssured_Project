@@ -54,6 +54,24 @@ public class _03_MovieLists {
                 .statusCode(200);
     }
 
+    @Test(dependsOnMethods = "TC_11_GetPopularMovies")
+    public void TC_12_GetTopRatedMovies() {
+        System.out.println();
+        System.out.println("------------TC_12_Get Top Rated Movies------------");
+
+        given()
+                .spec(reqSpec)
+
+                .when()
+                .get("/top_rated")
+
+                .then()
+                .log().body()
+                .statusCode(200);
+    }
+
+
+
 
 
 }
