@@ -7,7 +7,6 @@ import org.testng.annotations.*;
 import java.util.*;
 
 import static io.restassured.RestAssured.*;
-import static org.hamcrest.Matchers.*;
 
 public class _01_Account {
     String authenticityToken = "u6pDXt9AfgarEzvuwCUOLQTWCBRA2twh06XA0v-vrG8=";
@@ -19,9 +18,9 @@ public class _01_Account {
     int accountId;
 
 
-    @BeforeClass // This Annotations will later be changed to @BeforeClass
+    @BeforeClass
     public void TC_1_ValidLogin() {
-        baseURI = "https://api.themoviedb.org/3"; // API_URL
+        baseURI = "https://api.themoviedb.org/3/account"; // API_URL
 
         reqSpec = new RequestSpecBuilder()
                 .addHeader("Authorization", accessToken)
@@ -61,7 +60,7 @@ public class _01_Account {
                         .spec(reqSpec)
 
                         .when()
-                        .get("/account")
+                        .get()
 
                         .then()
                         .log().body()
@@ -89,7 +88,7 @@ public class _01_Account {
 
                 .when()
                 //.post("/account/" + accountId + "/favorite")
-                .post("/account/" + accountId + "/favorite")
+                .post("/" + accountId + "/favorite")
 
                 .then()
                 .statusCode(201)
@@ -113,7 +112,7 @@ public class _01_Account {
                 .contentType(ContentType.JSON)
 
                 .when()
-                .post("/account/" + accountId + "/watchlist")
+                .post("/" + accountId + "/watchlist")
 
 
                 .then()
@@ -130,7 +129,7 @@ public class _01_Account {
                 .spec(reqSpec)
 
                 .when()
-                .get("/account/" + accountId + "/favorite/movies")
+                .get("/" + accountId + "/favorite/movies")
 
                 .then()
                 .log().body()
@@ -146,7 +145,7 @@ public class _01_Account {
                 .spec(reqSpec)
 
                 .when()
-                .get("/account/" + accountId + "/rated/movies")
+                .get("/" + accountId + "/rated/movies")
 
                 .then()
                 .statusCode(200)
@@ -162,15 +161,10 @@ public class _01_Account {
                 .spec(reqSpec)
 
                 .when()
-                .get("/account/" + accountId + "/watchlist/movies")
+                .get("/" + accountId + "/watchlist/movies")
 
                 .then()
                 .statusCode(200)
                 .log().body();
     }
-
-
-
-
-
 }
