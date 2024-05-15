@@ -2,8 +2,10 @@ import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import static io.restassured.RestAssured.*;
 
@@ -165,4 +167,24 @@ public class _04_Search {
                 .statusCode(200);
     }
 
+    @Test(dependsOnMethods = "TC_14_1_SearchforMovie")
+    public void TC_17_1_AddMovieRating() {
+        System.out.println();
+        System.out.println("------------TC_17_1_Add Movie Rating------------");
+
+        Map<String, Double> movieRating = new HashMap<>();
+        movieRating.put("value", 5.5);
+
+        given()
+                .spec(reqSpec)
+                .body(movieRating)
+                .contentType(ContentType.JSON)
+
+                .when()
+                .post("/movie/" + zombieProjectId + "/rating")
+
+                .then()
+                .log().body()
+                .statusCode(201);
+    }
 }
