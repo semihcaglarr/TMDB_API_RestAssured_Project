@@ -36,7 +36,7 @@ public class _04_Search {
                 .get("/movie")
 
                 .then()
-                //.log().body()
+                .log().body()
                 .statusCode(200);
     }
 
@@ -54,7 +54,7 @@ public class _04_Search {
                 .get("/tv")
 
                 .then()
-                //.log().body()
+                .log().body()
                 .statusCode(200);
 
     }
@@ -73,8 +73,27 @@ public class _04_Search {
                 .get("/person")
 
                 .then()
-                .statusCode(200)
-                .log().body();
+                .log().body()
+                .statusCode(200);
+
+    }
+
+    @Test(dependsOnMethods = "TC_14_3_SearchforPersons")
+    public void TC_14_4_SearchforKeywords() {
+        System.out.println();
+        System.out.println("------------TC_14_4_Search for Keywords------------");
+
+        given()
+                .spec(reqSpec)
+                .param("query", "in")
+                .log().uri()
+
+                .when()
+                .get("/keyword")
+
+                .then()
+                .log().body()
+                .statusCode(200);
     }
 
 
