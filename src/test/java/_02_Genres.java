@@ -36,6 +36,23 @@ public class _02_Genres {
                 .get("/genre/movie/list")
 
                 .then()
+                .statusCode(200)
+                .log().body();
+    }
+
+    @Test(dependsOnMethods = "TC_9_GetMovieGenres")
+    public void TC_9_1_GetTvShowGenres() {
+        System.out.println();
+        System.out.println("------------TC_9_1_Get Tv Show Genres------------");
+
+        given()
+                .spec(reqSpec)
+
+                .when()
+                .get("/genre/tv/list")
+
+                .then()
+                .statusCode(200)
                 .log().body();
     }
 
