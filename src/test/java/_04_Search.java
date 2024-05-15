@@ -36,6 +36,24 @@ public class _04_Search {
                 .get("/movie")
 
                 .then()
+                .log().body()
+                .statusCode(200);
+    }
+
+    @Test(dependsOnMethods = "TC_14_1_SearchforMovie")
+    public void TC_14_2_SearchforTvShows() {
+        System.out.println();
+        System.out.println("------------TC_14_2_Search for Tv Shows------------");
+
+        given()
+                .spec(reqSpec)
+                .param("query", "bad")
+                .log().uri()
+
+                .when()
+                .get("/tv")
+
+                .then()
                 .statusCode(200)
                 .log().body();
     }
