@@ -137,6 +137,22 @@ public class _01_Account {
                 .statusCode(200);
     }
 
+    @Test(dependsOnMethods = "TC_6_GetFavoriteMovies")
+    public void TC_7_GetRatedMovies() {
+        System.out.println();
+        System.out.println("------------TC_7_GetRatedMovies------------");
+
+        given()
+                .spec(reqSpec)
+
+                .when()
+                .get("/account/" + accountId + "/rated/movies")
+
+                .then()
+                .statusCode(200)
+                .log().body();
+    }
+
 
 
 
