@@ -52,6 +52,4 @@ public class _02_Genres {
                 .statusCode(200)
                 .log().body();
     }
-
-
 }

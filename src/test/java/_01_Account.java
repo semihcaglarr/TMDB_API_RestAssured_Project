@@ -27,28 +27,7 @@ public class _01_Account {
                 .setContentType(ContentType.JSON)
                 .build();
 
-//        Map<String, String> credentials = new HashMap<>();
-//        credentials.put("authenticity_token", authenticityToken);
-//        credentials.put("username", userName);
-//        credentials.put("password", password);
-//
-//        given()
-//                .spec(reqSpec)
-//                .body(credentials)
-//                .contentType(ContentType.TEXT)
-//
-//                .when()
-//                .post("/login")
-//
-//                .then()
-//                .log().body()
-//                .statusCode(200);
     }
-
-//    @Test
-//    public void TC_2_InvalidValidLogin() {
-//    }
-
 
     @Test
     public void TC_3_GetAccountDetails() {

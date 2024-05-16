@@ -216,6 +216,4 @@ public class _04_Search {
                 .log().body()
                 .statusCode(201);
     }
-
-
 }
